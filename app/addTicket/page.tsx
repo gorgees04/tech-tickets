@@ -1,4 +1,4 @@
-import AddForm from "../ui/addTicket/AddForm";
+import AddForm from "../ui/addTicket/addForm";
 
 const addTicket = () => {
   return (

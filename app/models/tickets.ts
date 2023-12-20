@@ -18,4 +18,4 @@ const ticketSchema = new Schema(
 const Tickets =
   mongoose.models.Tickets || mongoose.model("Tickets", ticketSchema);
 
-export Tickets
+export default Tickets;
