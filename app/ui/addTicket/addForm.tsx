@@ -1,6 +1,9 @@
 "use client";
 
-const addForm = () => {
+import { TicketData } from "@/app/libs/definitions";
+import { useState } from "react";
+
+const AddForm = () => {
   const ticketData = {
     title: "",
     description: "",
@@ -10,7 +13,7 @@ const addForm = () => {
     status: "open",
   };
 
-  const [formData, setFormData] = useState(ticketData);
+  const [formData, setFormData] = useState<TicketData>(ticketData);
 
   return (
     <div>
@@ -149,4 +152,4 @@ const addForm = () => {
   );
 };
 
-export default addForm;
+export default AddForm;
