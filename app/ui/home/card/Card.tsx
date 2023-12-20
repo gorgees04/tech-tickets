@@ -3,9 +3,9 @@ import Priority from "./Priority";
 import DeleteBtn from "./DeleteBtn";
 import ProgressBar from "./ProgressBar";
 import EditBtn from "./EditBtn";
-import { TicketCard } from "@/app/lib/definitions";
+// import { TicketCard } from "@/app/lib/definitions";
 
-const Crad = ({ ticket }: { ticket: TicketCard }) => {
+const Crad = () => {
   const getDate = (date: string) => {
     const newDate = new Date(date);
 
