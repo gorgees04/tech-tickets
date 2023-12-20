@@ -37,9 +37,29 @@ const AddForm = () => {
     e.preventDefault();
     console.log(formData);
 
-    // after handle all request and submit the form will refresh and redirect to home page
-    router.refresh();
-    router.push("/");
+    // send post req
+    try {
+      const res = await fetch("/api/tickets/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        // after handle all request and submit the form will refresh and redirect to home page
+        router.refresh();
+        router.push("/");
+      } else {
+        throw new Error("Failed to create ticket");
+      }
+
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      throw `Failed to create ticket from form request // ${error}`;
+    }
   };
 
   // the higher number have the most priority
