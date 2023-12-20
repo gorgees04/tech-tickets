@@ -7,12 +7,12 @@ export const GET = async (req: NextRequest) => {
     // connsct to data "this happent whenever make a request"
     await connectToDB();
     // get all the data
-    const tickets = await Tickets.find({});
+    const tickets = await Tickets.find();
 
     // return a response to confirm that data hase been added
     return new Response(JSON.stringify(tickets), { status: 201 });
   } catch (error) {
-    // return a fail response if there the data wasn't added
+    // return a fail response if the data haven't fetched
     return new Response("Failed to fetch the tickets", { status: 500 });
   }
 };

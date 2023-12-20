@@ -3,9 +3,10 @@ import Priority from "./Priority";
 import DeleteBtn from "./DeleteBtn";
 import ProgressBar from "./ProgressBar";
 import EditBtn from "./EditBtn";
+import { TicketCard } from "@/app/libs/definitions";
 // import { TicketCard } from "@/app/lib/definitions";
 
-const Crad = () => {
+const Crad = ({ ticket }: { ticket: TicketCard }) => {
   const getDate = (date: string) => {
     const newDate = new Date(date);
 
