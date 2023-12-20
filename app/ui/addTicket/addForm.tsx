@@ -1,23 +1,70 @@
 "use client";
-
 import { TicketData } from "@/app/libs/definitions";
-import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ChangeEvent, useState } from "react";
 
 const AddForm = () => {
+  const router = useRouter();
+
   const ticketData = {
     title: "",
     description: "",
     category: "",
     priority: "1",
     progress: 0,
-    status: "open",
+    status: "open", // status will be open in all cases
   };
 
+  // form details
   const [formData, setFormData] = useState<TicketData>(ticketData);
+
+  // handle changes of all inputs
+  // e definitions type has to be imported from react
+  const handleChanges = (
+    e:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+      | ChangeEvent<HTMLSelectElement>
+  ) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setFormData({ ...formData, [name]: value.toString() });
+  };
+
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+
+    // after handle all request and submit the form will refresh and redirect to home page
+    router.refresh();
+    router.push("/");
+  };
+
+  // the higher number have the most priority
+  const priorities = ["1", "2", "3", "4", "5"];
+
+  // common programming issue or topic to create a ticket
+  const categories = [
+    "Bug Fixing",
+    "Testing",
+    "Feature Development",
+    "Refactoring",
+    "Code Review",
+    "Documentation",
+    "Deployment/DevOps",
+    "Performance Optimization",
+    "Research and Investigation",
+    "UI/UX",
+  ];
 
   return (
     <div>
-      <form className="w-full max-w-md mx-auto bg-green-50 p-14 h-fit rounded-lg shadow-lg shadow-gray-700">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md mx-auto bg-green-50 p-14 h-fit rounded-lg shadow-lg shadow-gray-700"
+      >
         {/* Title */}
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 font-bold mb-2">
@@ -120,33 +167,20 @@ const AddForm = () => {
           />
         </div>
 
-        {/* status */}
-        {/* <div className="mb-4">
-        <label htmlFor="status" className="block text-gray-700 font-bold mb-2">
-          Status
-        </label>
-        <select
-          id="status"
-          name="status"
-          required
-          className="w-full px-3 py-2 rounded-md border border-gray-300 focus:border-pageGreen focus:outline-none"
-          value={formData.status}
-          onChange={handleChanges}
-        >
-          <option value="">Select status</option>
-          {statuses.map((status, index) => (
-            <option key={index} value={status}>
-              {status}
-            </option>
-          ))}
-        </select>
-      </div> */}
-        <button
-          type="submit"
-          className="bg-pageGreen text-white px-4 py-2 rounded-md hover:bg-opacity-80 transition duration-300"
-        >
-          Submit
-        </button>
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="bg-pageGreen text-white px-4 py-2 rounded-md hover:bg-opacity-80 transition duration-300"
+          >
+            Submit
+          </button>
+
+          <Link href={"/"}>
+            <button className="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-opacity-80 transition duration-300">
+              Cancel
+            </button>
+          </Link>
+        </div>
       </form>
     </div>
   );
