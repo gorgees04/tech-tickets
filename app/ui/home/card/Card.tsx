@@ -49,7 +49,16 @@ const Crad = ({
 
       <div className="flex-grow"></div>
       <div>
-        <p className="text-xs text-gray-600">{getDate(ticket.createdAt)}</p>
+        <p className="text-xs text-gray-500">
+          <span className="text-gray-600">Created: </span>
+          {getDate(ticket.createdAt)}
+        </p>
+        {ticket.createdAt !== ticket.updatedAt && (
+          <p className="text-xs text-gray-500">
+            <span className="text-gray-600">Updated: </span>
+            {getDate(ticket.updatedAt)}
+          </p>
+        )}
         <ProgressBar progress={Number(ticket.progress)} />
       </div>
     </div>

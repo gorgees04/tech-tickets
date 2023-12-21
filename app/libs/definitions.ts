@@ -16,4 +16,5 @@ export interface TicketCard {
   progress: number;
   status: string;
   createdAt: string;
+  updatedAt: string;
 }
