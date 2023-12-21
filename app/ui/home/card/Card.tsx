@@ -32,7 +32,7 @@ const Crad = ({
       <div className="flex justify-between">
         <Priority priority={Number(ticket.priority)} />
         <div className="flex items-center">
-          <EditBtn />
+          <EditBtn id={ticket._id} />
           <button
             className="hover:text-red-700 text-gray-800 text-2xl"
             onClick={() => handleDelete(ticket._id)}
