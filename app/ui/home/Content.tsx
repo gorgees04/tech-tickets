@@ -8,11 +8,13 @@ export default function Content() {
   const route = useRouter();
   // get all tickets
   const [tickets, setTickets] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/api/tickets");
+      const res = await fetch("/api/tickets", {
+        method: "GET",
+      });
       const data = await res.json();
       setTickets(data);
       setLoading(false);
@@ -31,10 +33,12 @@ export default function Content() {
 
       // refresh the page
       if (res.ok) {
+        setLoading(true);
         const deletedFilter = tickets.filter(
           (ticket: TicketCard) => ticket._id !== id
         );
         setTickets(deletedFilter);
+        setLoading(false);
         route.refresh();
       }
     } catch (error) {
@@ -54,7 +58,7 @@ export default function Content() {
   }
 
   // if there is no tickets
-  if (tickets.length === 0) {
+  if (tickets.length === 0 && !loading) {
     return (
       <div className="text-3xl text-center mt-[300px]">
         <p>There is no Tickets :) </p>
