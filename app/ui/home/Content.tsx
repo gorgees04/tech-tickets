@@ -65,12 +65,33 @@ export default function Content() {
       </div>
     );
   }
+
+  // get categories
+  const categories = tickets.map((ticket: TicketCard) => ticket.category);
+  const filteredCategories = categories.filter(
+    (category: string, i: number) => categories.indexOf(category) === i
+  );
+  console.log(filteredCategories);
+
   return (
-    <div className="w-full flex flex-wrap justify-center">
-      {tickets.map((ticket: TicketCard) => {
+    <div className="sm:m-10">
+      {filteredCategories.map((category: string, id: number) => {
         return (
-          <div key={ticket._id} className="m-5">
-            <Crad ticket={ticket} handleDelete={handleDelete} />
+          <div key={id} className="w-full flex flex-col my-5">
+            <div className="text-2xl border-b-2 border-pageGreen pb-4 ">
+              <h1>{category}</h1>
+            </div>
+            <div className="flex flex-wrap justify-center sm:justify-start items-center">
+              {tickets.map((ticket: TicketCard) => {
+                if (category === ticket.category) {
+                  return (
+                    <div key={ticket._id} className="my-5 m-2">
+                      <Crad ticket={ticket} handleDelete={handleDelete} />
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
         );
       })}
