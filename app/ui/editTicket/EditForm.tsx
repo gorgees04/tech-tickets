@@ -2,9 +2,9 @@
 import { TicketData } from "@/app/libs/definitions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
-const EditForm = () => {
+const EditForm = ({ id }: { id: string }) => {
   const router = useRouter();
 
   const ticketData = {
@@ -13,11 +13,21 @@ const EditForm = () => {
     category: "",
     priority: "1",
     progress: 0,
-    status: "open", // status will be open in all cases
   };
 
   // form details
-  const [formData, setFormData] = useState<TicketData>(ticketData);
+  const [formData, setFormData] = useState(ticketData);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(`/api/tickets/${id}`, {
+        method: "GET",
+      });
+      const data = await res.json();
+      setFormData(data);
+    };
+    getData();
+  }, [id]);
 
   // handle changes of all inputs
   // e definitions type has to be imported from react
@@ -39,8 +49,8 @@ const EditForm = () => {
 
     // send post req
     try {
-      const res = await fetch("/api/tickets", {
-        method: "POST",
+      const res = await fetch(`/api/tickets/${id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -192,7 +202,7 @@ const EditForm = () => {
             type="submit"
             className="bg-pageGreen text-white px-4 py-2 rounded-md hover:bg-opacity-80 transition duration-300"
           >
-            Submit
+            Edit
           </button>
 
           <Link href={"/"}>
