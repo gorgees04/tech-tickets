@@ -10,8 +10,8 @@ const StatusBtn = ({ id, status }: { id: string; status: string }) => {
 
   // object to change color depending on the status
   const statusColor: { [key: string]: string } = {
-    open: "bg-blue-500",
-    pending: "bg-yellow-400",
+    open: "bg-sky-500",
+    pending: "bg-amber-400",
     solved: "bg-pageGreen",
   };
 
@@ -35,7 +35,7 @@ const StatusBtn = ({ id, status }: { id: string; status: string }) => {
       <select
         value={currentStatus}
         onChange={handleChanges}
-        className={`text-white text-center rounded-md hover:bg-opacity-80 text-sm p-2 capitalize ${
+        className={`text-white text-center rounded-md hover:bg-opacity-80 text-sm p-2 capitalize hover:cursor-pointer ${
           statusColor[currentStatus] || ""
         }`}
       >
