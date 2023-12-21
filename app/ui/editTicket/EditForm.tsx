@@ -18,6 +18,7 @@ const EditForm = ({ id }: { id: string }) => {
   // form details
   const [formData, setFormData] = useState(ticketData);
 
+  // get data of the ticket and set them as value of the form
   useEffect(() => {
     const getData = async () => {
       const res = await fetch(`/api/tickets/${id}`, {
@@ -47,7 +48,7 @@ const EditForm = ({ id }: { id: string }) => {
     e.preventDefault();
     console.log(formData);
 
-    // send post req
+    // send Patch req to edit the data
     try {
       const res = await fetch(`/api/tickets/${id}`, {
         method: "PATCH",
