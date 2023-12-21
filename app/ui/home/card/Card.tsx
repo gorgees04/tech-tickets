@@ -4,6 +4,7 @@ import { MdDeleteForever } from "react-icons/md";
 import ProgressBar from "./ProgressBar";
 import EditBtn from "./EditBtn";
 import { TicketCard } from "@/app/libs/definitions";
+import StatusBtn from "./StatusBtn";
 
 const Crad = ({
   ticket,
@@ -60,6 +61,9 @@ const Crad = ({
           </p>
         )}
         <ProgressBar progress={Number(ticket.progress)} />
+        <div className="w-full flex justify-end mt-3">
+          <StatusBtn />
+        </div>
       </div>
     </div>
   );
