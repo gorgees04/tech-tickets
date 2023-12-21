@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
     const tickets = await Tickets.find();
 
     // return a response to confirm that data hase been added
-    return new Response(JSON.stringify(tickets), { status: 201 });
+    return new Response(JSON.stringify(tickets), { status: 200 });
   } catch (error) {
     // return a fail response if the data haven't fetched
     return new Response("Failed to fetch the tickets", { status: 500 });
