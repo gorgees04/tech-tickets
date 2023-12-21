@@ -71,7 +71,6 @@ export default function Content() {
   const filteredCategories = categories.filter(
     (category: string, i: number) => categories.indexOf(category) === i
   );
-  console.log(filteredCategories);
 
   return (
     <div className="sm:m-10">
