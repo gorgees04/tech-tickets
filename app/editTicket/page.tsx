@@ -1,5 +1,14 @@
-const addTicket = () => {
-  return <div>addTicket</div>;
+import AddForm from "../ui/addTicket/addForm";
+
+const EditTicket = () => {
+  return (
+    <div className="w-full min-h-screen flex flex-col p-5 ">
+      <div>
+        <h1 className="text-3xl font-extrabold text-center m-5">Edit Ticket</h1>
+      </div>
+      <AddForm />
+    </div>
+  );
 };
 
-export default addTicket;
+export default EditTicket;

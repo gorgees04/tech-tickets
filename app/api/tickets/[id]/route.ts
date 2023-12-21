@@ -22,6 +22,32 @@ export const DELETE = async (
   }
 };
 
+export const GET = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  try {
+    // id
+    const { id } = params;
+    // connsct to data "this happent whenever make a request"
+    await connectToDB();
+
+    // find the ticket by id
+    const ticketById = await Tickets.findById(id);
+
+    // chack if the id doesn't excist, it will return 404
+    if (!ticketById) {
+      return new Response("Ticket not found", { status: 404 });
+    }
+
+    // get data of the id if founded
+    return new Response(JSON.stringify(ticketById), { status: 200 });
+  } catch (error) {
+    // return a fail response if the data wasn't founded
+    return new Response("Failed to find the ticket", { status: 500 });
+  }
+};
+
 export const PATCH = async (
   req: NextRequest,
   { params }: { params: { id: string } }
