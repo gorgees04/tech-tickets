@@ -66,10 +66,10 @@ export default function Content() {
     );
   }
   return (
-    <div className="w-full flex flex-wrap items-center justify-center">
+    <div className="w-full flex flex-wrap justify-center">
       {tickets.map((ticket: TicketCard) => {
         return (
-          <div key={ticket._id}>
+          <div key={ticket._id} className="m-5">
             <Crad ticket={ticket} handleDelete={handleDelete} />
           </div>
         );

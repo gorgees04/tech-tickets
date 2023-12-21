@@ -28,7 +28,7 @@ const Crad = ({
   };
 
   return (
-    <div className="w-[400px] border-2 p-5 rounded bg-gray-200 m-5 shadow-lg shadow-gray-700">
+    <div className="flex flex-col w-[400px] h-full border-2 p-5 rounded bg-gray-200 m-5 shadow-lg shadow-gray-700 ">
       <div className="flex justify-between">
         <Priority priority={Number(ticket.priority)} />
         <div className="flex items-center">
@@ -41,7 +41,7 @@ const Crad = ({
           </button>
         </div>
       </div>
-      <div className="my-5">
+      <div className="my-2">
         <h1 className="text-2xl font-bold">{ticket.title}</h1>
         <div className=" border-t-2 border-pageGreen"></div>
         <p className="whitespace-pre-wrap">{ticket.description}</p>
