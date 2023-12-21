@@ -39,7 +39,7 @@ const AddForm = () => {
 
     // send post req
     try {
-      const res = await fetch("/api/tickets/add", {
+      const res = await fetch("/api/tickets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

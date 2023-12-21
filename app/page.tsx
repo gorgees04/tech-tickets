@@ -1,4 +1,4 @@
-import Content from "./ui/home/Content";
+import Content from "@/app/ui/home/Content";
 
 export default function Home() {
   return (
