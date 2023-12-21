@@ -1,12 +1,18 @@
 import React from "react";
 import Priority from "./Priority";
-import DeleteBtn from "./DeleteBtn";
+import { MdDeleteForever } from "react-icons/md";
 import ProgressBar from "./ProgressBar";
 import EditBtn from "./EditBtn";
 import { TicketCard } from "@/app/libs/definitions";
-// import { TicketCard } from "@/app/lib/definitions";
 
-const Crad = ({ ticket }: { ticket: TicketCard }) => {
+const Crad = ({
+  ticket,
+  handleDelete,
+}: {
+  ticket: TicketCard;
+  handleDelete: (_id: string) => void;
+}) => {
+  // conver the data comes from database
   const getDate = (date: string) => {
     const newDate = new Date(date);
 
@@ -27,7 +33,12 @@ const Crad = ({ ticket }: { ticket: TicketCard }) => {
         <Priority priority={Number(ticket.priority)} />
         <div className="flex items-center">
           <EditBtn />
-          <DeleteBtn />
+          <button
+            className="hover:text-red-700 text-gray-800 text-2xl"
+            onClick={() => handleDelete(ticket._id)}
+          >
+            <MdDeleteForever />
+          </button>
         </div>
       </div>
       <div className="my-5">

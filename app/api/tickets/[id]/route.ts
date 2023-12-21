@@ -1,5 +1,4 @@
-import { connectToDB } from "@/app/libs/database/database";
-import { TicketCard } from "@/app/libs/definitions";
+import { connectToDB } from "@/app/libs/database";
 import Tickets from "@/app/models/tickets";
 import { NextRequest } from "next/server";
 

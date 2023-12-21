@@ -8,7 +8,7 @@ export interface TicketData {
 }
 
 export interface TicketCard {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   category: string;
