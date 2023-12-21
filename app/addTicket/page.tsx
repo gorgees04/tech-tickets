@@ -1,6 +1,6 @@
-import AddForm from "../ui/addTicket/AddForm";
+import AddForm from "../ui/addTicket/addForm";
 
-const addTicket = () => {
+const AddTicket = () => {
   return (
     <div className="w-full min-h-screen flex flex-col p-5 ">
       <div>
@@ -13,4 +13,4 @@ const addTicket = () => {
   );
 };
 
-export default addTicket;
+export default AddTicket;
