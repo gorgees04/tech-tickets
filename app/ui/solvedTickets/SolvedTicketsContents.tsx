@@ -22,8 +22,26 @@ const SolvedTicketsContents = () => {
     getData();
   }, []);
 
-  // handle delete
-  const handleDelete = (id: string) => {};
+  // handle Delete
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await fetch(`/api/solvedTickets/${id}`, {
+        method: "DELETE",
+      });
+
+      // to show the resultes without refreshing
+      if (res.ok) {
+        setLoading(true);
+        const deletedFilter = solvedTickets.filter(
+          (ticket: SolvedTickets) => ticket._id !== id
+        );
+        setSolvetTickets(deletedFilter);
+        setLoading(false);
+      }
+    } catch (error) {
+      throw new Error("Couldn't delete the solved ticket");
+    }
+  };
 
   // loading
   if (loading) {
