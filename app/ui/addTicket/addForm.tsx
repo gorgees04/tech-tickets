@@ -66,6 +66,7 @@ const AddForm = () => {
   // common programming issue or topic to create a ticket
   const categories = [
     "Bug Fixing",
+    "Enhancement",
     "Testing",
     "Feature Development",
     "Refactoring",
@@ -75,6 +76,7 @@ const AddForm = () => {
     "Performance Optimization",
     "Research and Investigation",
     "UI/UX",
+    "Others",
   ];
 
   return (

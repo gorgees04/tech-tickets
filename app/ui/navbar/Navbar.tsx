@@ -5,7 +5,7 @@ import { MdFileDownloadDone } from "react-icons/md";
 
 const Navbar = () => {
   return (
-    <nav className="bg-pageGreen text-white w-full h-[50px] flex justify-between items-center px-2 sm:px-7">
+    <nav className="bg-pageGreen text-white w-full h-[50px] flex justify-between items-center px-2 sm:px-7 sticky top-0">
       <div className="flex justify-around w-[100px]">
         <Link href={"/"} className="text-3xl hover:text-gray-600 ml-5">
           <TbHomeBolt />
