@@ -1,15 +1,13 @@
 "use client";
-
 import { TicketCard } from "@/app/libs/definitions";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const StatusBtn = ({
   ticket,
   handleStatusChanges,
 }: {
   ticket: TicketCard;
-  handleStatusChanges: (changedStatus: string, ticketId: string) => void;
+  handleStatusChanges: (ticketId: string) => void;
 }) => {
   const [currentStatus, setCurrentStatus] = useState(ticket.status);
 
@@ -45,7 +43,7 @@ const StatusBtn = ({
 
     if (changedStatus === "solved") {
       // send data to content component to change the data without refresh
-      handleStatusChanges(changedStatus, ticketId);
+      handleStatusChanges(ticketId);
       const solvedTicket = {
         id: ticket._id,
         title: ticket.title,

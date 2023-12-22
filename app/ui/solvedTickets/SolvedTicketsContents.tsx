@@ -1,5 +1,4 @@
 "use client";
-
 import { SolvedTickets } from "@/app/libs/definitions";
 import { useEffect, useState } from "react";
 import SolvedCard from "./SolvedCard";
@@ -70,7 +69,7 @@ const SolvedTicketsContents = () => {
   );
 
   return (
-    <div className="sm:m-10">
+    <div className="sm:m-3">
       {filteredCategories.map((category: string, id: number) => {
         return (
           <div key={id} className="w-full flex flex-col my-5">

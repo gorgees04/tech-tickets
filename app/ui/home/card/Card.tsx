@@ -13,7 +13,7 @@ const Crad = ({
 }: {
   ticket: TicketCard;
   handleDelete: (_id: string) => void;
-  handleStatusChanges: (changedStatus: string, ticketId: string) => void;
+  handleStatusChanges: (ticketId: string) => void;
 }) => {
   // conver the data comes from database
   const getDate = (date: string) => {

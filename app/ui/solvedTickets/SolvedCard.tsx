@@ -3,7 +3,6 @@ import Priority from "../home/card/Priority";
 import { SolvedTickets } from "@/app/libs/definitions";
 import { MdDeleteForever } from "react-icons/md";
 import ProgressBar from "../home/card/ProgressBar";
-import StatusBtn from "../home/card/StatusBtn";
 
 const SolvedCard = ({
   solvedTicket,

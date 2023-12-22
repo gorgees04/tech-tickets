@@ -50,7 +50,7 @@ export default function Content() {
   };
 
   // ticket Status: if the status is solved filter the tickets with inlt the non solved tickets
-  const handleTicketStatus = (status: string, id: string) => {
+  const handleTicketStatus = (id: string) => {
     const solvedTicket = tickets.filter(
       (ticket: TicketCard) => ticket._id !== id
     );
@@ -82,14 +82,14 @@ export default function Content() {
   );
 
   return (
-    <div className="sm:m-10">
+    <div className="sm:m-2">
       {filteredCategories.map((category: string, id: number) => {
         return (
           <div key={id} className="w-full flex flex-col my-5">
             <div className="text-2xl border-b-2 border-pageGreen pb-4 ">
               <h1>{category}</h1>
             </div>
-            <div className="flex flex-wrap justify-center sm:justify-start items-center">
+            <div className="flex flex-wrap justify-center sm:justify-start">
               {tickets.map((ticket: TicketCard) => {
                 if (category === ticket.category) {
                   return (

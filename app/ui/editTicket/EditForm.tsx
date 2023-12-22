@@ -1,5 +1,4 @@
 "use client";
-import { TicketData } from "@/app/libs/definitions";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
