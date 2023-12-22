@@ -41,6 +41,6 @@ The Teck Tickets app is a website designed to facilitate the creation, display, 
 <div>
     <img src="public/project-screenshoots/img-1.png" alt="Alt Text" title="Title" width="112px">
     <img src="public/project-screenshoots/img-2.png" alt="Alt Text" title="Title" width="400px">
-    <img src="public/project-screenshoots/img-3.png" alt="Alt Text" title="Title" width="270px">
-    <img src="public/project-screenshoots/img-4.png" alt="Alt Text" title="Title" width="270px">
+    <img src="public/project-screenshoots/img-3.png" alt="Alt Text" title="Title" width="400px">
+    <img src="public/project-screenshoots/img-4.png" alt="Alt Text" title="Title" width="400px">
 </div>
