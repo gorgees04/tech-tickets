@@ -53,11 +53,10 @@ const StatusBtn = ({
         category: ticket.category,
         priority: ticket.priority,
         progress: ticket.priority,
-        status: ticket.status,
+        status: changedStatus,
         createdTime: ticket.createdAt,
         editedTime: ticket.updatedAt,
       };
-      console.log(solvedTicket);
 
       const toSolvedPage = async () => {
         try {

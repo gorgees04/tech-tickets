@@ -1,11 +1,14 @@
 "use client";
 
+import { SolvedTickets } from "@/app/libs/definitions";
 import { useEffect, useState } from "react";
+import SolvedCard from "./SolvedCard";
 
 const SolvedTicketsContents = () => {
   const [solvedTickets, setSolvetTickets] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // fetch all the solved tickets
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -19,6 +22,9 @@ const SolvedTicketsContents = () => {
     getData();
   }, []);
 
+  // handle delete
+  const handleDelete = (id: string) => {};
+
   // loading
   if (loading) {
     return (
@@ -28,8 +34,19 @@ const SolvedTicketsContents = () => {
     );
   }
 
+  // if there is no tickets
+  if (solvedTickets.length === 0 && !loading) {
+    return (
+      <div className="text-3xl text-center mt-[300px]">
+        <p>There is no Solved Tickets :) </p>
+      </div>
+    );
+  }
+
   // get categories
-  const categories = solvedTickets.map((ticket: TicketCard) => ticket.category);
+  const categories = solvedTickets.map(
+    (ticket: SolvedTickets) => ticket.category
+  );
   const filteredCategories = categories.filter(
     (category: string, i: number) => categories.indexOf(category) === i
   );
@@ -43,15 +60,14 @@ const SolvedTicketsContents = () => {
               <h1>{category}</h1>
             </div>
             <div className="flex flex-wrap justify-center sm:justify-start items-center">
-              {solvedTickets.map((ticket: TicketCard) => {
+              {solvedTickets.map((ticket: SolvedTickets) => {
                 if (category === ticket.category) {
                   return (
                     <div key={ticket._id} className="my-5 m-2">
-                      {/* <Crad
-                        ticket={ticket}
+                      <SolvedCard
+                        solvedTicket={ticket}
                         handleDelete={handleDelete}
-                        handleStatusChanges={handleTicketStatus}
-                      /> */}
+                      />
                     </div>
                   );
                 }

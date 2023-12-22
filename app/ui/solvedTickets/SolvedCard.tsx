@@ -1,11 +1,17 @@
 import React from "react";
 import Priority from "../home/card/Priority";
-import { SolvedCard } from "@/app/libs/definitions";
+import { SolvedTickets } from "@/app/libs/definitions";
 import { MdDeleteForever } from "react-icons/md";
 import ProgressBar from "../home/card/ProgressBar";
 import StatusBtn from "../home/card/StatusBtn";
 
-const SolvedCard = ({ solvedTicket }: { solvedTicket: SolvedCard }) => {
+const SolvedCard = ({
+  solvedTicket,
+  handleDelete,
+}: {
+  solvedTicket: SolvedTickets;
+  handleDelete: (id: string) => void;
+}) => {
   // conver the data comes from database
   const getDate = (date: string) => {
     const newDate = new Date(date);
@@ -28,7 +34,7 @@ const SolvedCard = ({ solvedTicket }: { solvedTicket: SolvedCard }) => {
         <div className="flex items-center">
           <button
             className="hover:text-red-700 text-gray-800 text-2xl"
-            // onClick={() => handleDelete(solvedTicket._id)}
+            onClick={() => handleDelete(solvedTicket._id)}
           >
             <MdDeleteForever />
           </button>
@@ -44,20 +50,23 @@ const SolvedCard = ({ solvedTicket }: { solvedTicket: SolvedCard }) => {
       <div>
         <p className="text-xs text-gray-500">
           <span className="text-gray-600">Created: </span>
-          {getDate(solvedTicket.createdAt)}
+          {getDate(solvedTicket.createdTime)}
         </p>
-        {solvedTicket.createdAt !== solvedTicket.createdTime && (
+        {solvedTicket.editedTime !== solvedTicket.createdTime && (
           <p className="text-xs text-gray-500">
             <span className="text-gray-600">Updated: </span>
             {getDate(solvedTicket.editedTime)}
           </p>
         )}
+        <p className="text-xs text-gray-500">
+          <span className="text-gray-600">Solved: </span>
+          {getDate(solvedTicket.createdAt)}
+        </p>
         <ProgressBar progress={Number(solvedTicket.progress)} />
         <div className="w-full flex justify-end mt-3">
-          {/* <StatusBtn
-            solvedTicket={solvedTicket}
-            handleStatusChanges={handleStatusChanges}
-          /> */}
+          <button className="bg-pageGreen text-white px-4 py-2 rounded-md transition duration-300">
+            {solvedTicket.status}
+          </button>
         </div>
       </div>
     </div>

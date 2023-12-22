@@ -19,7 +19,7 @@ export interface TicketCard {
   updatedAt: string;
 }
 
-export interface SolvedCard {
+export interface SolvedTickets {
   _id: string;
   title: string;
   description: string;
