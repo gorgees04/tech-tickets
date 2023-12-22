@@ -83,7 +83,7 @@ export const PATCH = async (
     await ticketById.save();
 
     // if the id has founded, it will confirm that it has been edited
-    return new Response("Ticked Updated", { status: 200 });
+    return new Response(JSON.stringify(ticketById), { status: 200 });
   } catch (error) {
     // return a fail response if the data coudn't be deleted
     return new Response("Failed to edit the tickets", { status: 500 });
