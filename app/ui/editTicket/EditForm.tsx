@@ -46,7 +46,6 @@ const EditForm = ({ id }: { id: string }) => {
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
 
     // send Patch req to edit the data
     try {
@@ -67,7 +66,6 @@ const EditForm = ({ id }: { id: string }) => {
       }
 
       const data = await res.json();
-      console.log(data);
     } catch (error) {
       throw `Failed to create ticket from form request // ${error}`;
     }

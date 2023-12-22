@@ -35,7 +35,6 @@ const AddForm = () => {
 
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
 
     // send post req
     try {
@@ -56,7 +55,6 @@ const AddForm = () => {
       }
 
       const data = await res.json();
-      console.log(data);
     } catch (error) {
       throw `Failed to create ticket from form request // ${error}`;
     }

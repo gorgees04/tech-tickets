@@ -1,23 +1,22 @@
 "use client";
-import { TicketCard } from "@/app/libs/definitions";
-import Crad from "./card/Card";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
-export default function Content() {
-  const route = useRouter();
-  // get all tickets
-  const [tickets, setTickets] = useState([]);
+import { SolvedTickets } from "@/app/libs/definitions";
+import { useEffect, useState } from "react";
+import SolvedCard from "./SolvedCard";
+
+const SolvedTicketsContents = () => {
+  const [solvedTickets, setSolvetTickets] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // fetch all the solved tickets
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
-      const res = await fetch("/api/tickets", {
+      const res = await fetch("/api/solvedTickets", {
         method: "GET",
       });
       const data = await res.json();
-      setTickets(data);
+      setSolvetTickets(data);
       setLoading(false);
     };
     getData();
@@ -26,35 +25,22 @@ export default function Content() {
   // handle Delete
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`/api/tickets/${id}`, {
+      const res = await fetch(`/api/solvedTickets/${id}`, {
         method: "DELETE",
       });
 
       // to show the resultes without refreshing
-
-      // refresh the page
       if (res.ok) {
         setLoading(true);
-        const deletedFilter = tickets.filter(
-          (ticket: TicketCard) => ticket._id !== id
+        const deletedFilter = solvedTickets.filter(
+          (ticket: SolvedTickets) => ticket._id !== id
         );
-        setTickets(deletedFilter);
+        setSolvetTickets(deletedFilter);
         setLoading(false);
-        route.refresh();
       }
     } catch (error) {
-      throw new Error("Couldn't delete the ticket");
+      throw new Error("Couldn't delete the solved ticket");
     }
-
-    route.refresh();
-  };
-
-  // ticket Status: if the status is solved filter the tickets with inlt the non solved tickets
-  const handleTicketStatus = (status: string, id: string) => {
-    const solvedTicket = tickets.filter(
-      (ticket: TicketCard) => ticket._id !== id
-    );
-    setTickets(solvedTicket);
   };
 
   // loading
@@ -67,16 +53,18 @@ export default function Content() {
   }
 
   // if there is no tickets
-  if (tickets.length === 0 && !loading) {
+  if (solvedTickets.length === 0 && !loading) {
     return (
       <div className="text-3xl text-center mt-[300px]">
-        <p>There is no Tickets :) </p>
+        <p>There is no Solved Tickets :) </p>
       </div>
     );
   }
 
   // get categories
-  const categories = tickets.map((ticket: TicketCard) => ticket.category);
+  const categories = solvedTickets.map(
+    (ticket: SolvedTickets) => ticket.category
+  );
   const filteredCategories = categories.filter(
     (category: string, i: number) => categories.indexOf(category) === i
   );
@@ -90,14 +78,13 @@ export default function Content() {
               <h1>{category}</h1>
             </div>
             <div className="flex flex-wrap justify-center sm:justify-start items-center">
-              {tickets.map((ticket: TicketCard) => {
+              {solvedTickets.map((ticket: SolvedTickets) => {
                 if (category === ticket.category) {
                   return (
                     <div key={ticket._id} className="my-5 m-2">
-                      <Crad
-                        ticket={ticket}
+                      <SolvedCard
+                        solvedTicket={ticket}
                         handleDelete={handleDelete}
-                        handleStatusChanges={handleTicketStatus}
                       />
                     </div>
                   );
@@ -109,4 +96,6 @@ export default function Content() {
       })}
     </div>
   );
-}
+};
+
+export default SolvedTicketsContents;
