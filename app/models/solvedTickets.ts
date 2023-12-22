@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 const solevdTicketSchema = new Schema(
   {
+    id: String,
     title: String,
     description: String,
     category: String,

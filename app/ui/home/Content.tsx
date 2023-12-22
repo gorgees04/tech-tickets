@@ -9,6 +9,7 @@ export default function Content() {
   // get all tickets
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
@@ -48,6 +49,14 @@ export default function Content() {
     route.refresh();
   };
 
+  // ticket Status: if the status is solved filter the tickets with inlt the non solved tickets
+  const handleTicketStatus = (status: string, id: string) => {
+    const solvedTicket = tickets.filter(
+      (ticket: TicketCard) => ticket._id !== id
+    );
+    setTickets(solvedTicket);
+  };
+
   // loading
   if (loading) {
     return (
@@ -85,7 +94,11 @@ export default function Content() {
                 if (category === ticket.category) {
                   return (
                     <div key={ticket._id} className="my-5 m-2">
-                      <Crad ticket={ticket} handleDelete={handleDelete} />
+                      <Crad
+                        ticket={ticket}
+                        handleDelete={handleDelete}
+                        handleStatusChanges={handleTicketStatus}
+                      />
                     </div>
                   );
                 }

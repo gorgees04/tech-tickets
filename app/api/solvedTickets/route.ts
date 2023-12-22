@@ -19,13 +19,13 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   // the post request from the ticket that has been changed to solved
-  const ticketData = await req.json();
+  const solvedTicket = await req.json();
 
   try {
     // connsct to data "this happent whenever make a request"
     await connectToDB();
     // add the request to database
-    const newSolvedTicket = new SolvedTicketsTickets(ticketData);
+    const newSolvedTicket = new SolvedTickets(solvedTicket);
     // save it
     await newSolvedTicket.save();
 

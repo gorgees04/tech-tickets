@@ -9,9 +9,11 @@ import StatusBtn from "./StatusBtn";
 const Crad = ({
   ticket,
   handleDelete,
+  handleStatusChanges,
 }: {
   ticket: TicketCard;
   handleDelete: (_id: string) => void;
+  handleStatusChanges: (changedStatus: string, ticketId: string) => void;
 }) => {
   // conver the data comes from database
   const getDate = (date: string) => {
@@ -62,7 +64,10 @@ const Crad = ({
         )}
         <ProgressBar progress={Number(ticket.progress)} />
         <div className="w-full flex justify-end mt-3">
-          <StatusBtn id={ticket._id} status={ticket.status} />
+          <StatusBtn
+            ticket={ticket}
+            handleStatusChanges={handleStatusChanges}
+          />
         </div>
       </div>
     </div>
